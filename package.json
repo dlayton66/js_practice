@@ -1,0 +1,20 @@
+{
+  "name": "js_practice",
+  "version": "1.0.0",
+  "description": "JavaScript Exercism Practice",
+  "main": "hello-world.js",
+  "scripts": {
+    "test": "mocha"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dlayton66/js_practice.git"
+  },
+  "author": "Drew",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dlayton66/js_practice/issues"
+  },
+  "homepage": "https://github.com/dlayton66/js_practice#readme",
+  "type": "module"
+}
