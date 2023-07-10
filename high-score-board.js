@@ -61,3 +61,13 @@
   }
   return scoreBoard;
 }
+
+/**
+ * Normalizes a score with the provided normalization function.
+ *
+ * @param {Params} params the parameters for performing the normalization
+ * @returns {number} normalized score
+ */
+ export function normalizeScore(params) {
+  return params['normalizeFunction'](params['score']);
+}
