@@ -1,4 +1,3 @@
-/// <reference path="./global.d.ts" />
 // @ts-check
 
 /**
@@ -22,5 +21,17 @@
  */
  export function addPlayer(scoreBoard, player, score) {
   scoreBoard[player] = score;
+  return scoreBoard;
+}
+
+/**
+ * Removes a player from a score board.
+ *
+ * @param {Record<string, number>} scoreBoard
+ * @param {string} player
+ * @returns {Record<string, number>} updated score board
+ */
+ export function removePlayer(scoreBoard, player) {
+  delete scoreBoard[player];
   return scoreBoard;
 }
