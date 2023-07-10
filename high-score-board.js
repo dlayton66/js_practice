@@ -35,3 +35,16 @@
   delete scoreBoard[player];
   return scoreBoard;
 }
+
+/**
+ * Increases a player's score by the given amount.
+ *
+ * @param {Record<string, number>} scoreBoard
+ * @param {string} player
+ * @param {number} points
+ * @returns {Record<string, number>} updated score board
+ */
+ export function updateScore(scoreBoard, player, points) {
+  scoreBoard[player] += points;
+  return scoreBoard;
+}
