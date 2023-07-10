@@ -48,3 +48,16 @@
   scoreBoard[player] += points;
   return scoreBoard;
 }
+
+/**
+ * Applies 100 bonus points to all players on the board.
+ *
+ * @param {Record<string, number>} scoreBoard
+ * @returns {Record<string, number>} updated score board
+ */
+ export function applyMondayBonus(scoreBoard) {
+  for (let key in scoreBoard) {
+    scoreBoard[key] += 100;
+  }
+  return scoreBoard;
+}
