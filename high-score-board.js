@@ -65,7 +65,7 @@
 /**
  * Normalizes a score with the provided normalization function.
  *
- * @param {Params} params the parameters for performing the normalization
+ * @param {object} params the parameters for performing the normalization
  * @returns {number} normalized score
  */
  export function normalizeScore(params) {
