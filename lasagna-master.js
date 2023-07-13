@@ -42,3 +42,15 @@ export function quantities(layers) {
     sauce: sauce
   }
 }
+
+export function addSecretIngredient(friendsList, myList) {
+  myList.push(friendsList[friendsList.length-1]);
+}
+
+export function scaleRecipe(recipe, servings) {
+  let scaledRecipe = structuredClone(recipe);
+  for (let key in scaledRecipe) {
+    scaledRecipe[key] *= servings/2;
+  }
+  return scaledRecipe;
+}
