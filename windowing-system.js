@@ -40,14 +40,40 @@ export class ProgramWindow {
     if (size.height < 1) {
       size.height = 1;
     }
-
-    if (size.width > this.screenSize.width) {
-      size.width = this.screenSize.width;
+    if (size.width + this.position.x > this.screenSize.width) {
+      size.width = this.screenSize.width - this.position.x;
     }
-    if (size.height > this.screenSize.height) {
-      size.height = this.screenSize.height;
+    if (size.height + this.position.y > this.screenSize.height) {
+      size.height = this.screenSize.height - this.position.y;
     }
     
     this.size.resize(size.width, size.height);
   }
+
+  move(position) {
+    if (position.x + this.size.width > this.screenSize.width) {
+      position.x = this.screenSize.width - this.size.width;
+    }
+    if (position.y + this.size.height > this.screenSize.height) {
+      position.y = this.screenSize.height - this.size.height;
+    }
+    
+    if (position.x < 0) {
+      position.x = 0;
+    }
+    if (position.y < 0) {
+      position.y = 0;
+    }
+    
+    this.position.move(position.x, position.y);
+  }
+
+}
+
+export function changeWindow(programWindow) {
+  const newSize = new Size(400,300);
+  const newPosition = new Position(100, 150);
+  programWindow.resize(newSize);
+  programWindow.move(newPosition);
+  return programWindow;
 }
