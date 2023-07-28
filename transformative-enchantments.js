@@ -7,7 +7,7 @@
  *
  * @returns {number[]} deck with every card doubled
  */
-export function seeingDouble(deck) {
+ export function seeingDouble(deck) {
   return deck.map(value => value * 2);
 }
 
@@ -48,8 +48,11 @@ export function middleTwo(deck) {
  */
 
 export function sandwichTrick(deck) {
-  let mid = [deck.pop(), deck.shift()];
-  deck.splice(deck.length/2, 0, mid[0], mid[1]);
+  let first = deck.pop();
+  let second = deck.shift();
+  if(first && second) {
+    deck.splice(deck.length/2, 0, first, second);
+  }
   return deck;
 }
 /**
@@ -60,7 +63,7 @@ export function sandwichTrick(deck) {
  * @returns {number[]} deck with only 2s
  */
 export function twoIsSpecial(deck) {
-  throw new Error('Implement the twoIsSpecial function');
+  return deck.filter(value => value === 2);
 }
 
 /**
@@ -71,7 +74,7 @@ export function twoIsSpecial(deck) {
  * @returns {number[]} ordered deck
  */
 export function perfectlyOrdered(deck) {
-  throw new Error('Implement the perfectlyOrdered function');
+  return deck.sort((a,b) => a - b);
 }
 
 /**
@@ -82,5 +85,5 @@ export function perfectlyOrdered(deck) {
  * @returns {number[]} reordered deck
  */
 export function reorder(deck) {
-  throw new Error('Implement the reorder function');
+  return deck.reverse();
 }
