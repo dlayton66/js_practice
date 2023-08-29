@@ -24,7 +24,10 @@
  * @returns {boolean} whether the track is in the playlist
  */
 export function hasTrack(playlist, track) {
-  throw new Error('Please implement the hasTrack function');
+  const set = new Set(playlist);
+  const curSize = set.size;
+  set.add(track);
+  return curSize === set.size;
 }
 
 /**
@@ -35,7 +38,9 @@ export function hasTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function addTrack(playlist, track) {
-  throw new Error('Please implement the addTrack function');
+  const set = new Set(playlist);
+  set.add(track);
+  return Array.from(set);
 }
 
 /**
@@ -46,7 +51,9 @@ export function addTrack(playlist, track) {
  * @returns {string[]} new playlist
  */
 export function deleteTrack(playlist, track) {
-  throw new Error('Please implement the deleteTrack function');
+  const set = new Set(playlist);
+  set.delete(track);
+  return Array.from(set);
 }
 
 /**
@@ -56,5 +63,7 @@ export function deleteTrack(playlist, track) {
  * @returns {string[]} list of artists
  */
 export function listArtists(playlist) {
-  throw new Error('Please implement the listArtists function');
+  const artists = playlist.map(song => song.substring(song.search(' - ') + 3, song.length));
+  const set = new Set(artists);
+  return Array.from(set);
 }
