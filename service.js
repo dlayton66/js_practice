@@ -38,8 +38,17 @@ export class TranslationService {
    * @param {string[]} texts
    * @returns {Promise<string[]>}
    */
-  batch(texts) {
-    throw new Error('Implement the batch function');
+   batch(texts) {
+    if (texts.length === 0) {
+      return new Promise((resolve, reject) => {
+        reject(new BatchIsEmpty);
+      });
+    }
+    const promisesBatch = texts.map((text) => this.api.fetch(text));
+    return Promise.all(promisesBatch)
+      .then((resolutions) => {
+        return resolutions.map((resolution) => resolution.translation);
+      });
   }
 
   /**
