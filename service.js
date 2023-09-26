@@ -8,6 +8,10 @@
 // In your own projects, files, and code, you can play with @ts-check as well.
 
 export class TranslationService {
+  /**
+   * Creates a new service
+   * param {ExternalApi} api the original api
+   */
   constructor(api) {
     this.api = api;
   }
@@ -22,10 +26,10 @@ export class TranslationService {
    * @returns {Promise<string>}
    */
   free(text) {
-    const fetchedPromise = this.api.fetch(text);
-    return fetchedPromise.then((resolution) => {
-      return resolution.translation;
-    });
+    return this.api.fetch(text)
+      .then((resolution) => {
+        return resolution.translation;
+      });
   }
 
   /**
@@ -38,7 +42,7 @@ export class TranslationService {
    * @param {string[]} texts
    * @returns {Promise<string[]>}
    */
-   batch(texts) {
+  batch(texts) {
     if (texts.length === 0) {
       return new Promise((resolve, reject) => {
         reject(new BatchIsEmpty);
@@ -61,7 +65,16 @@ export class TranslationService {
    * @returns {Promise<void>}
    */
   request(text) {
-    throw new Error('Implement the request function');
+    let promiseFunc = () => new Promise((resolve, reject) => {
+      this.api.request(text, (error) => {
+        // @ts-ignore
+        error ? reject(error) : resolve();
+      })
+    });
+
+    return promiseFunc()
+      .catch(promiseFunc)
+      .catch(promiseFunc);
   }
 
   /**
@@ -109,5 +122,6 @@ export class BatchIsEmpty extends Error {
 Requested a batch translation, but there are no texts in the batch.
     `.trim(),
     );
+    this.name = 'BatchIsEmpty';
   }
 }
